@@ -1,0 +1,120 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Covid-19_DashBoard </title>
+
+	<!-- INCLUDING JQUERY-->
+	<script src=
+"https://code.jquery.com/jquery-3.5.1.js">
+	</script>
+
+	<!-- CSS FOR STYLING THE PAGE -->
+	<style>
+		table {
+			margin: 0 auto;
+			font-size: large;
+			border: 1px solid black;
+		}
+
+		h1 {
+			text-align: center;
+			color: #006600;
+			font-size: xx-large;
+			font-family: 'Gill Sans',
+				'Gill Sans MT', ' Calibri',
+				'Trebuchet MS', 'sans-serif';
+		}
+
+		td {
+			background-color: #E4F5D4;
+			border: 1px solid black;
+		}
+
+		th,
+		td {
+			font-weight: bold;
+			border: 1px solid black;
+			padding: 10px;
+			text-align: center;
+		}
+
+		td {
+			font-weight: lighter;
+		}
+	</style>
+</head>
+
+<body>
+	<section>
+		<h1>Covid-19_DashBoard</h1>
+
+		<!-- TABLE CONSTRUCTION-->
+		<table id='table'>
+			<!-- HEADING FORMATION -->
+			<tr>
+				<th>Sno</th>
+				<th>Date</th>
+				<th>Time</th>
+				<th>State/UnionTerritory</th>
+				<th>ConfirmedIndianNational</th>
+				<th>ConfirmedForeignNational</th>
+				<th>Cured</th>
+				<th>Deaths</th>
+				<th>Confirmed</th>
+			</tr>
+
+			<script>
+				$(document).ready(function () {
+
+					// FETCHING DATA FROM JSON FILE
+					$.getJSON("cases_data.json",
+							function (data) {
+						var student = '';
+
+						// ITERATING THROUGH OBJECTS
+						$.each(data, function (key, value) {
+
+							//CONSTRUCTION OF ROWS HAVING
+							// DATA FROM JSON OBJECT
+							student += '<tr>';
+							student += '<td>' +
+								value.Sno + '</td>';
+
+							student += '<td>' +
+								value.Date + '</td>';
+
+							student += '<td>' +
+								value.Time + '</td>';
+                                
+                            student += '<td>' +
+                                value.StateUnionTerritory + '</td>';
+
+                            student += '<td>' +
+                                value.ConfirmedIndianNational + '</td>';
+							
+                            student += '<td>' +
+								value.ConfirmedForeignNational + '</td>';
+                            
+                            student += '<td>' +
+								value.Cured + '</td>';
+                            
+                            student += '<td>' +
+								value.Deaths + '</td>';
+                            
+                            student += '<td>' +
+								value.Confirmed + '</td>';
+							
+
+							student += '</tr>';
+						});
+						
+						//INSERTING ROWS INTO TABLE
+						$('#table').append(student);
+					});
+				});
+			</script>
+	</section>
+</body>
+
+</html>
